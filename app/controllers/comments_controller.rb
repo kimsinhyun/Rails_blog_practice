@@ -13,6 +13,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = @post.comments.find(params[:id])
+
+    if @comment.update(comment_params)
+      redirect_to post_path(@post), notice: 'Comment has been updated'
+    else
+      redirect_to post_path(@post), alert: 'Comment has not been updated'
+    end
+  end
+
   def destroy
     @comment = @post.comments.find(params[:id])
     @comment.destroy
