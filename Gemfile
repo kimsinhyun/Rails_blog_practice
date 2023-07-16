@@ -48,8 +48,9 @@ gem "bootstrap"
 gem "jquery-rails"
 gem "feathericon-rails"
 
-
 gem 'devise'
+
+gem 'noticed'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

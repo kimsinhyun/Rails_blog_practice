@@ -11,6 +11,8 @@ class PostsController < ApplicationController
   def show
     @post.views += 1
     @post.save!
+
+    mark_notification_as_read
   end
 
   # GET /posts/new
@@ -71,4 +73,11 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body)
     end
+
+  def mark_notification_as_read
+    if current_user
+      notifications_to_mark_as_read = @post.notifications_as_post.where(recipient: current_user)
+      notifications_to_mark_as_read.update_all(read_at: Time.zone.now)
+    end
+  end
 end
