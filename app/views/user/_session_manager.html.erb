@@ -1,0 +1,18 @@
+<% if current_user %>
+<!--  <ul class="navbar-nav">-->
+<!--    <li class="nav-item dropdown">-->
+<!--      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--        Dropdown-->
+<!--      </a>-->
+<!--      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+        <%#= render 'user/session_manager' %>
+<!--      </ul>-->
+<!--    </li>-->
+<!--  </ul>-->
+
+    <li><%= link_to "New Post", new_post_path, class:"dropdown-item"  %></li>
+    <li><%= link_to "Log Out", destroy_user_session_path, class:"dropdown-item", method: :delete  %></li>
+<% else %>
+    <li><%= link_to "Sign Up", new_user_registration_path, class:"dropdown-item"  %></li>
+    <li><%= link_to "Log in", new_user_session_path, class:"dropdown-item"  %></li>
+<% end %>
