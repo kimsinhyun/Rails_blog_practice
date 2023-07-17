@@ -1,0 +1,11 @@
+<div id="<%= dom_id category %>">
+  <h2p>
+    <strong>Name:</strong>
+    <% target = action_name.eql?('show') ? category_path : category %>
+    <%= link_to category.name.capitalize, target %>
+  </h2p>
+
+  <% category.posts.includes(:user, :rich_text_body).each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>

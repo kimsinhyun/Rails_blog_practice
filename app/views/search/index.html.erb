@@ -6,14 +6,14 @@
     <tr>
       <th><%= sort_link(@query, :title, "Title", default_order: :asc) %></th>
       <th><%= sort_link(@query, :body, "Blog Content") %></th>
-      <th><%= sort_link(@query, :user_name, "Users") %></th>
+      <th><%= sort_link(@query, :user_full_name, "Users") %></th>
     </tr>
     <tbody>
       <% @posts.each do |post| %>
         <tr>
           <td><%= link_to post.title, post %></td>
           <td><%= post.body.to_plain_text.truncate_words(25) %></td>
-          <td><%= link_to post.user.email, post.user %></td>
+          <td><%= link_to post.user.full_name, post.user %></td>
         </tr>
       <% end %>
     </tbody>
