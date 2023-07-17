@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  authenticated :user, -> (user) { user.admin? } do
-    get 'admin', to: 'admin#index'
-    get 'admin/posts'
-    get 'admin/comments'
-    get 'admin/users'
-    get 'admin/show_post'
-  end
 
   get 'search', to: 'search#index'
   get 'users/profile'
