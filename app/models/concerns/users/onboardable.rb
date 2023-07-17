@@ -11,7 +11,6 @@ module Users
       end
       attr_accessor :form_step
 
-      # User.new(name: '...', address_attributes: { ... }) 를 위한 부분
 
       with_options if: -> { required_for_step?('set_name') } do |step|
         step.validates :first_name, presence: true

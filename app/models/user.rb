@@ -13,6 +13,7 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
 
   after_initialize :set_default_role, if: :new_record?
+  # User.new(name: '...', address_attributes: { ... }) 를 위한 부분
   accepts_nested_attributes_for :address, :allow_destroy => true
 
 
