@@ -1,15 +1,19 @@
 class User < ApplicationRecord
+  include Users::Onboardable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :notifications, as: :recipient
+  has_one :address, dependent: :destroy, inverse_of: :user, autosave: true
 
   enum role: [:user, :admin]
 
   after_initialize :set_default_role, if: :new_record?
+  accepts_nested_attributes_for :address, :allow_destroy => true
 
 
   def self.ransackable_associations(auth_object = nil)
@@ -20,11 +24,13 @@ class User < ApplicationRecord
     %w[id name updated_at views]
   end
 
+  def full_name
+    "#{first_name.capitalize unless first_name.nil?} #{last_name.capitalize unless last_name.nil?}"
+  end
 
   private
 
   def set_default_role
     self.role ||= :user
   end
-
 end
