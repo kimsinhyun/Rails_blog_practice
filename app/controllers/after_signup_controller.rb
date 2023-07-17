@@ -49,7 +49,7 @@ class AfterSignupController < ApplicationController
     root_path
   end
 
-  def onboarding_params(step = 'signup')
+  def onboarding_params(step = 'sign_up')
     permitted_attributes = case step
                            when 'set_name'
                              required_parameters = :user
