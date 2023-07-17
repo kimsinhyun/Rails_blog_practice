@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :notifications, as: :recipient
   has_one :address, dependent: :destroy, inverse_of: :user, autosave: true
 
+  has_one_attached :avatar
+
   enum role: [:user, :admin]
 
   after_initialize :set_default_role, if: :new_record?

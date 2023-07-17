@@ -16,7 +16,7 @@
   </div>
   <div>
     <%= form.label :category, style: "display: block" %>
-    <%= form.select :category,
+    <%= form.select :category_id,
                     options_for_select(Category.all.order(name: :asc).collect { |cate| [cate.name, cate.id] }) %>
   </div>
   <div>

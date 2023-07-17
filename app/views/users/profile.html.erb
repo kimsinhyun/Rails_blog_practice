@@ -1,2 +1,24 @@
-<h1><%= @user.full_name %></h1>
-<h6><%= pluralize(@user.views, 'view') %></h6>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4">
+      <%= image_tag(@user.avatar, style:"width:150px; height: 150px; border-radius:100%") if @user.avatar.attached? %>
+    </div>
+    <h1><%= @user.full_name %></h1>
+    <h6><%= pluralize(@user.comments.count, "comment") %></h6>
+    <h6><%= pluralize(@user.views, "view") %></h6>
+    <h6><%= pluralize(@total_views, "total Post View") %></h6>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <% @posts.each do |post| %>
+      <div class="card mt-3">
+        <div class="card-body"><%= link_to post.title, post %></div>
+        <p class="card-text"><% "#{time_ago_in_words(post.created_at)} ago" %></p>
+        <p class="card-text"><% post.body.to_plain_text.truncate_words(100) %></p>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-10">
+    </div>
+  </div>
+</div>

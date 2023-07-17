@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   def profile
     @user.views += 1
     @user.save!
+
+    @posts = @user.posts.includes(:rich_text_body).order(created_at: :desc)
+    @total_views = @posts.sum(:views)
   end
 
   private
